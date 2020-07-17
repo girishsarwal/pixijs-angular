@@ -337,12 +337,12 @@
     </svg>
 
   </div>
-  <app-pixi></app-pixi>
-
-
+  <div style="min-height:100px;">
+    <button (click)="handleZoomIn()"> Click Here to Zoom In</button>
+    <button (click)="handleZoomOut()"> Click Here to Zoom Out</button>
+  </div>
+  <app-pixi [zoom]=0.7></app-pixi>
 </div>
-
-
 
 
 

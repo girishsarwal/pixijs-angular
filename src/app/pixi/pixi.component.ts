@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, Input } from '@angular/core';
 import { Application } from 'pixi.js';
+import { createInput } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-pixi',
@@ -10,7 +11,7 @@ import { Application } from 'pixi.js';
 export class PixiComponent implements OnInit {
   public app: Application;
   constructor(private elementRef: ElementRef, private ngZone: NgZone) { }
-  
+  @Input('zoom') zoomLevel: any;
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {
       this.app = new Application({
@@ -26,10 +27,16 @@ export class PixiComponent implements OnInit {
       sprite.anchor.x = 0.5;
       sprite.anchor.y = 0.5;
 
-      this.app.ticker.add(function() {
-        sprite.rotation+=0.01;
-      });
+      var that = this;
       
+      this.app.ticker.add(function() {
+        
+        sprite.rotation+=0.01;
+
+        sprite.scale.x=that.zoomLevel;
+        sprite.scale.y=that.zoomLevel;
+      });
+     
       this.app.stage.addChild(sprite);
     });
   }
