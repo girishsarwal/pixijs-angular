@@ -26,7 +26,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/pixi.js/dist/pixi.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pixi-angular"
+    }
+  },
+  "defaultProject": "pixi-angular",
+  "cli": {
+    "analytics": false
+  }
 }
